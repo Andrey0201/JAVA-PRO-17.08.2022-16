@@ -1,4 +1,4 @@
-package com.javapro.lesson21;
+package com.javapro.lesson21.model;
 
 public enum ProductType {
   BOOK,

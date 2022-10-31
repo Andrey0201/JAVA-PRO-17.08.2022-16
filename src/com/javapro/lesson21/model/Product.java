@@ -1,9 +1,8 @@
-package com.javapro.lesson21;
+package com.javapro.lesson21.model;
 
 
 import java.time.LocalDate;
 import java.time.Year;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,6 @@ public class Product {
   private double price;
   private double discount;
   private int id;
-  private final List<Product> productList = new ArrayList<>();
   private final LocalDate localDate = java.time.LocalDate.now();
 
 
@@ -43,11 +41,8 @@ public class Product {
   public Product() {
   }
 
-  public void addAllProductToList(Product product) {
-    productList.add(product);
-  }
 
-  public List<Product> addListWithPrice(double price, ProductType type) {
+  public List<Product> getListWithPrice(double price, ProductType type,List<Product>productList) {
     return productList.stream()
         .filter(product -> product.getPrice() > price & product.getType().equals(type))
         .collect(Collectors.toList());
@@ -55,16 +50,15 @@ public class Product {
 
   }
 
-  public List<Product> addListWithDiscount(double discount, ProductType type) {
+  public List<Product> addListWithDiscount(double discount, ProductType type,List<Product>productList) {
     return productList.stream()
         .filter(product -> product.getType().equals(type) && product.getDiscount() != 0)
         .peek(product -> product.setPrice(discount))
         .collect(Collectors.toList());
 
-
   }
 
-  public Product minValue(ProductType type) {
+  public Product minValue(ProductType type,List<Product>productList) {
     return productList.stream()
         .filter(product -> product.getType().equals(type) && product.getDiscount() != 0)
         .min(Comparator.comparing(Product::getPrice))
@@ -72,13 +66,13 @@ public class Product {
 
   }
 
-  public List<Product> addListLastThee() {
+  public List<Product> addListLastThee(List<Product>productList) {
     return productList.stream().skip(productList.size()-3)
         .collect(Collectors.toList());
 
 
   }
-  public Double addListInThisYear(Year year,double maxPrice,ProductType type) {
+  public Double addListInThisYear(Year year,double maxPrice,ProductType type,List<Product>productList) {
 
     return productList.stream()
         .filter(product -> product.getType().equals(type) && product.getPrice() <= maxPrice
@@ -86,7 +80,7 @@ public class Product {
         .mapToDouble(Product::getPrice).sum();
 
   }
-public Map<ProductType,List<Product>> addMap(){
+public Map<ProductType,List<Product>> addMap(List<Product>productList){
   return productList.stream().collect(Collectors.groupingBy(Product::getType));
 
   }
@@ -98,10 +92,6 @@ public Map<ProductType,List<Product>> addMap(){
     return price;
   }
 
-  public int getId() {
-    return id;
-  }
-
   public LocalDate getLocalDateTime() {
     return localDate;
   }
@@ -110,23 +100,18 @@ public Map<ProductType,List<Product>> addMap(){
     return discount;
   }
 
-  public List<Product> getProductList() {
-    return productList;
-  }
-
   public void setPrice(double discount) {
     this.price = getPrice() - getPrice() / discount;
   }
-
 
   @Override
   public String toString() {
     return "Product{" +
         "type=" + type +
         ", price=" + price +
-        ", id=" + id +
-        ", date=" + localDate +
         ", discount=" + discount +
-       " }\n";
+        ", id=" + id +
+        ", localDate=" + localDate +
+        "'}'\n";
   }
 }
