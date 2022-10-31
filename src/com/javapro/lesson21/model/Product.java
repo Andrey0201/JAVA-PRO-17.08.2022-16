@@ -16,7 +16,7 @@ public class Product {
   private double price;
   private boolean discount;
   private int id;
-  private final LocalDate localDate = java.time.LocalDate.now();
+  private final LocalDate createDate = java.time.LocalDate.now();
 
 
   public Product(ProductType type, double price) {
@@ -158,7 +158,7 @@ public class Product {
   }
 
   public LocalDate getLocalDateTime() {
-    return localDate;
+    return createDate;
   }
 
   public boolean getDiscount() {
@@ -176,7 +176,7 @@ public class Product {
         ", price=" + price +
         ", discount=" + discount +
         ", id=" + id +
-        ", localDate=" + localDate +
-        "'}'\n";
+        ", localDate=" + createDate +
+        "}\n\n";
   }
 }
