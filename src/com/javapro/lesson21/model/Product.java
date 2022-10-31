@@ -44,8 +44,7 @@ public class Product {
   }
 
   /**
-   * @author Andrii Andriutsa on 31.10.2022
-   * Return a list whose category is equivalent ProductType
+   * @author Andrii Andriutsa on 31.10.2022 Return a list whose category is equivalent ProductType
    * and price is more than the indicated price.
    */
   public List<Product> getListWithPrice(double indicatedPrice, ProductType type,
@@ -64,8 +63,7 @@ public class Product {
   }
 
   /**
-   * @author Andrii Andriutsa on 31.10.2022
-   * Return a list whose category is equivalent ProductType
+   * @author Andrii Andriutsa on 31.10.2022 Return a list whose category is equivalent ProductType
    * and with the possibility of applying a discount. And apply the indicated discount.
    */
   public List<Product> addListWithDiscount(double discount, ProductType type,
@@ -83,8 +81,7 @@ public class Product {
   }
 
   /**
-   * @author Andrii Andriutsa on 31.10.2022
-   * Return the cheapest product from the category
+   * @author Andrii Andriutsa on 31.10.2022 Return the cheapest product from the category
    * ProductType
    */
   public Product minValue(ProductType type, List<Product> productList) {
@@ -166,7 +163,7 @@ public class Product {
   }
 
   public void setPrice(double discount) {
-    this.price = getPrice() - getPrice()/discount;
+    this.price = getPrice() - getPrice() / discount;
   }
 
   @Override
