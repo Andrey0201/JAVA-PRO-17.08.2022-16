@@ -28,14 +28,14 @@ public class Main {
     productList.add(new Product(PEN, 260));
     productList.add(new Product(BOOK, 100));
     productList.add(new Product(ERASER, 150));
-    productList.add(new Product(BOOK, 40, 10));
-    productList.add(new Product(BOOK, 60, 15));
-    productList.add(new Product(BOOK, 70, 10, 111));
+    productList.add(new Product(BOOK, 40, true));
+    productList.add(new Product(BOOK, 60, true));
+    productList.add(new Product(BOOK, 70, true, 111));
 
     Product product = new Product();
 
     System.out.println(product.getListWithPrice(250, BOOK, productList));
-    System.out.println(product.addListWithDiscount( BOOK, productList));
+    System.out.println(product.addListWithDiscount(10, BOOK, productList));
     try {
       System.out.println(product.minValue(BOOK, productList));
     } catch (

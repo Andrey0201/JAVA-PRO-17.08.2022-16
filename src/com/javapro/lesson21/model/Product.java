@@ -14,7 +14,7 @@ public class Product {
 
   ProductType type;
   private double price;
-  private double discount;
+  private boolean discount;
   private int id;
   private final LocalDate localDate = java.time.LocalDate.now();
 
@@ -25,14 +25,14 @@ public class Product {
 
   }
 
-  public Product(ProductType type, double price, double discount) {
+  public Product(ProductType type, double price, boolean discount) {
     this.type = type;
     this.price = price;
     this.discount = discount;
 
   }
 
-  public Product(ProductType type, double price, double discount, int id) {
+  public Product(ProductType type, double price, boolean discount, int id) {
     this.type = type;
     this.price = price;
     this.discount = discount;
@@ -68,7 +68,7 @@ public class Product {
    * Return a list whose category is equivalent ProductType
    * and with the possibility of applying a discount. And apply the indicated discount.
    */
-  public List<Product> addListWithDiscount( ProductType type,
+  public List<Product> addListWithDiscount(double discount, ProductType type,
       List<Product> productList) {
     if (productList == null) {
       System.out.println("List can't be null");
@@ -76,8 +76,8 @@ public class Product {
     }
     return productList.stream()
         .filter(product -> product.getType() != null && product.getType().equals(type)
-            && product.getDiscount() != 0)
-        .peek(Product::setPrice)
+            && product.getDiscount())
+        .peek(product -> product.setPrice(discount))
         .collect(Collectors.toList());
 
   }
@@ -94,7 +94,7 @@ public class Product {
     }
     return productList.stream()
         .filter(product -> product.getType() != null && product.getType().equals(type)
-            && product.getDiscount() != 0)
+            && product.getDiscount())
         .min(Comparator.comparing(Product::getPrice))
         .orElseThrow(() -> new NoFindElementException("Продукт " + type + " Не найден"));
 
@@ -161,12 +161,12 @@ public class Product {
     return localDate;
   }
 
-  public double getDiscount() {
+  public boolean getDiscount() {
     return discount;
   }
 
-  public void setPrice() {
-    this.price = getPrice() - getPrice() / getDiscount();
+  public void setPrice(double discount) {
+    this.price = getPrice() - getPrice()/discount;
   }
 
   @Override
