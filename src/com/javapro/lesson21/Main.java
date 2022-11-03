@@ -35,15 +35,15 @@ public class Main {
     Product product = new Product();
 
     System.out.println(product.getListWithPrice(250, BOOK, productList));
-    System.out.println(product.addListWithDiscount(10, BOOK, productList));
+    System.out.println(product.getListWithDiscount(10, BOOK, productList));
     try {
-      System.out.println(product.minValue(BOOK, productList));
+      System.out.println(product.getCheapest(BOOK, productList));
     } catch (
         NoFindElementException e) {
       System.out.println(e.getMessage());
     }
-    System.out.println(product.addListLastThee(productList));
-    System.out.println(product.addListInThisYear(2022, 75, BOOK, productList));
-    System.out.println(product.addMap(productList));
+    System.out.println(product.getLastTheeAdded(productList));
+    System.out.println(product.getAddedInThisYear(2022, 75, BOOK, productList));
+    System.out.println(product.getGroupingByType(productList));
   }
 }

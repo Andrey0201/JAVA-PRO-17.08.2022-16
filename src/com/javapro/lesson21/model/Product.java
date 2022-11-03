@@ -66,7 +66,7 @@ public class Product {
    * @author Andrii Andriutsa on 31.10.2022 Return a list whose category is equivalent ProductType
    * and with the possibility of applying a discount. And apply the indicated discount.
    */
-  public List<Product> addListWithDiscount(double discount, ProductType type,
+  public List<Product> getListWithDiscount(double discount, ProductType type,
       List<Product> productList) {
     if (productList == null) {
       System.out.println("List can't be null");
@@ -84,7 +84,7 @@ public class Product {
    * @author Andrii Andriutsa on 31.10.2022 Return the cheapest product from the category
    * ProductType
    */
-  public Product minValue(ProductType type, List<Product> productList) {
+  public Product getCheapest(ProductType type, List<Product> productList) {
     if (productList == null) {
       System.out.println("List can't be null");
       return null;
@@ -100,7 +100,7 @@ public class Product {
   /**
    * @author Andrii Andriutsa on 31.10.2022 Return a list of the three most recently added products
    */
-  public List<Product> addListLastThee(List<Product> productList) {
+  public List<Product> getLastTheeAdded(List<Product> productList) {
     if (productList == null) {
       System.out.println("List can't be null");
       return null;
@@ -117,7 +117,7 @@ public class Product {
    * following criteria: - product added during the indicated year - ProductType - the price of the
    * product does not exceed the specified price
    */
-  public Double addListInThisYear(int year, double maxPrice, ProductType type,
+  public Double getAddedInThisYear(int year, double maxPrice, ProductType type,
       List<Product> productList) {
     if (productList == null) {
       System.out.println("List can't be null");
@@ -135,7 +135,7 @@ public class Product {
   /**
    * @author Andrii Andriutsa on 31.10.2022 Returns map (grouping objects by product type)
    */
-  public Map<ProductType, List<Product>> addMap(List<Product> productList) {
+  public Map<ProductType, List<Product>> getGroupingByType(List<Product> productList) {
     if (productList == null) {
       System.out.println("List can't be null");
       return null;
