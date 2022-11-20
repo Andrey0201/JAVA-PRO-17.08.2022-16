@@ -16,7 +16,7 @@ public class Product {
   private double price;
   private boolean discount;
   private int id;
-  private final LocalDate createDate = java.time.LocalDate.now();
+  private LocalDate createDate = java.time.LocalDate.now();
 
 
   public Product(ProductType type, double price) {
@@ -50,8 +50,7 @@ public class Product {
   public List<Product> getListWithPrice(double indicatedPrice, ProductType type,
       List<Product> productList) {
     if (productList == null) {
-      System.out.println("List can't be null");
-      return null;
+      throw new IllegalArgumentException("List can't be null");
     }
     return productList.stream()
         .filter(
@@ -69,8 +68,7 @@ public class Product {
   public List<Product> getListWithDiscount(double discount, ProductType type,
       List<Product> productList) {
     if (productList == null) {
-      System.out.println("List can't be null");
-      return null;
+      throw new IllegalArgumentException("List can't be null");
     }
     return productList.stream()
         .filter(product -> product.getType() != null && product.getType().equals(type)
@@ -86,8 +84,7 @@ public class Product {
    */
   public Product getCheapest(ProductType type, List<Product> productList) {
     if (productList == null) {
-      System.out.println("List can't be null");
-      return null;
+      throw new IllegalArgumentException("List can't be null");
     }
     return productList.stream()
         .filter(product -> product.getType() != null && product.getType().equals(type)
@@ -99,13 +96,14 @@ public class Product {
 
   /**
    * @author Andrii Andriutsa on 31.10.2022 Return a list of the three most recently added products
+   * by date added
    */
   public List<Product> getLastTheeAdded(List<Product> productList) {
     if (productList == null) {
-      System.out.println("List can't be null");
-      return null;
+      throw new IllegalArgumentException("List can't be null");
     }
     return productList.stream()
+        .sorted(Comparator.comparing(Product::getLocalDateTime))
         .skip(productList.size() - 3)
         .collect(Collectors.toList());
 
@@ -120,8 +118,7 @@ public class Product {
   public Double getAddedInThisYear(int year, double maxPrice, ProductType type,
       List<Product> productList) {
     if (productList == null) {
-      System.out.println("List can't be null");
-      return null;
+      throw new IllegalArgumentException("List can't be null");
 
     }
     return productList.stream()
@@ -137,8 +134,7 @@ public class Product {
    */
   public Map<ProductType, List<Product>> getGroupingByType(List<Product> productList) {
     if (productList == null) {
-      System.out.println("List can't be null");
-      return null;
+      throw new IllegalArgumentException("List can't be null");
     }
     return productList.stream()
         .filter(product -> product.getType() != null)
@@ -156,6 +152,10 @@ public class Product {
 
   public LocalDate getLocalDateTime() {
     return createDate;
+  }
+
+  public void setCreateDate(LocalDate createDate) {
+    this.createDate = createDate;
   }
 
   public boolean getDiscount() {
